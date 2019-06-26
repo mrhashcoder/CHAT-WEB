@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    body{
+      margin:0px;
+      padding: 0px;
+      background:#EFF0F1;
+    }
+    .heading{
+      background:#283E4A;
+      color:#000;
+      margin:0px;
+      font-size:200%;
+      padding:5px;
+    }
+    .NAVIGATION{
+      width:50%;
+      background:#283E4A;
+      color:white;
+      font-size:200%;
+      height:200%;
+      border-bottom-right-radius: 10px;
+      position:sticky;
+      top:0px;
+    }
+    a{
+      text-decoration: none;
+      padding:10px;
+      margin:10px;
+    }
+    .navlink:hover{
+      background-color:black;
+      border-radius:10px;
+    }
+    .USERWELCOME{
+      font-size: 200%;
+      margin:0px;
+      padding: 0px;
+    }
+    .ALLUSERS{
+      background:#567;
+      color:#123;
+      font-size:150%;
+    }
+    .user{
+      font-size:200%;
+      color:#999;
+      margin-top:10px;
+      padding: 5px;
+    }
+    .user:hover{
+      background:#999;
+      color:white;
+      border-radius:9px;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="heading">
+      <img src="\media\logo.png" alt="" style ="float:left;width:120px;">
+      <h1 style ="width:600px">LET'S CHAT</h1>
+      <p style="float:right;">DEVELOPER : ABHISHEK SHARMA</p>
+      <h3 style ="width:500px">Feel Connected & Live Life</h3>
+    </div>
+
+    <div class="NAVIGATION">
+      <a href="/homepage" style = "color:white" class="navlink">HOME</a>
+      <a href="{% url 'logout' %}" style = "color:white ;"class="navlink">Logout</a>
+    </div>
+
+    <div class="USERWELCOME">
+      {% csrf_token %}
+        <h2>Hello {{mainuser.username}}</h2>
+        <h4>Chat with one you like,love will make you feel what is right?</h4>
+    </div>
+    <div class="ALLUSERS">
+      <h1>ALL USERS :</h1>
+        {% for user in users %}
+        <ul>
+          <li><a href="{%url 'chatpage' reciver_id=user.id%}" class = "user">{{user.username}}</a></li>
+          <br>
+        </ul>
+        {%endfor%}
+    </div>
+  </body>
+</html>

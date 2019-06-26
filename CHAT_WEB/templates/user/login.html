@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    body{
+      margin:0px;
+      padding: 0px;
+      background:#cccc9;
+    }
+    .heading{
+      background:#283E4A;
+      color:#000;
+      margin:0px;
+      font-size:200%;
+      padding:5px;
+    }
+    .BOX{
+      font-size:150%;
+      width:50%;
+      position: relative;
+      left:25%;
+      background:#EFF0F1;
+      margin:18px;
+      padding: 10px;
+      border-radius: 18px;
+    }
+    button{
+      border-radius: 20%;
+      background: #283E4A;
+      color:white;
+      font-size:150%;
+    }
+    button:hover{
+      background:#5580CD;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="heading">
+      <img src="\media\logo.png" alt="" style ="float:left;width:120px;">
+      <h1 style ="width:600px">LET'S CHAT</h1>
+      <p style="float:right;">DEVELOPER : ABHISHEK SHARMA</p>
+      <h3 style ="width:500px">Feel Connected & Live Life</h3>
+    </div>
+
+    <div class="BOX">
+      <center>
+        <h1>LOGIN</h1>
+        <form method="post">
+          {% csrf_token %}
+          {{form.as_p}}
+          <button type="submit" name="login">Login</button>
+        </form>
+      </center>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    body{
+      margin:0px;
+      padding: 0px;
+      background:#EFF0F1;
+    }
+    .heading{
+      background:#283E4A;
+      color:#000;
+      margin:0px;
+      font-size:200%;
+      padding:5px;
+    }
+    .NAVIGATION{
+      width:50%;
+      background:#283E4A;
+      color:white;
+      font-size:200%;
+      height:200%;
+      border-bottom-right-radius: 10px;
+      position:sticky;
+      top:0px;
+    }
+    a{
+      text-decoration: none;
+      padding:10px;
+      margin:10px;
+    }
+    .navlink:hover{
+      background-color:black;
+      border-radius:10px;
+    }
+    .wholechat{
+      position:relative;
+      left:200px;
+      background:white;
+      padding:20px;
+      width:600px;
+      border-radius:24px;
+      border:2px black solid;
+
+    }
+    .sent{
+      background:#565;
+      width:300px;
+      border-radius:18px;
+      padding: 8px;
+      font-size:150%;
+      color:black;
+      border : 2px #565 solid;
+    }
+    .mesgbox{
+      background:#889;
+      padding:15px;
+      border-radius:20px;
+      border:2px black dotted;
+
+    }
+    input{
+      border-radius:15px;
+      width:400px;
+      font-size:120%;
+      display: inline;
+      padding: 10px;
+    }
+    label{
+      display: none;
+    }
+    .recived{
+      position: relative;
+      left:300px;
+      background:#283E4A;
+      color:white;
+      border-radius:18px;
+      padding: 8px;
+      font-size:150%;
+      width:300px;
+    }
+    h2{
+      background:#556677;
+      margin:0px;
+      padding: 20px;
+      border-top-right-radius:24px;
+      border-top-left-radius:24px;
+      border-bottom-left-radius : 10px;
+      border-bottom-right-radius : 10px;
+      color:black;
+      font-size:250%;
+    }
+    button{
+      border-radius:20px;
+      width:100px;
+      font-size:120%;
+      background:#EFF0F1;
+    }
+    </style>
+  </head>
+  <body>
+     <div class="heading">
+        <img src="\media\logo.png" alt="" style ="float:left;width:120px;">
+        <h1 style ="width:600px">LET'S CHAT</h1>
+        <p style="float:right;">DEVELOPER : ABHISHEK SHARMA</p>
+        <h3 style ="width:500px">Feel Connected & Live Life</h3>
+      </div>
+
+
+      <div class="NAVIGATION">
+        <a href="/homepage" style = "color:white" class="navlink">HOME</a>
+        <a href="{% url 'logout' %}" style = "color:white ;"class="navlink">Logout</a>
+      </div>
+
+    <div class="wholechat">
+      {% csrf_token %}
+      <h2>{{reciver.username}}</h2>
+        <div class = "chatbox">
+          {% for mesg in mesgs%}
+            {% if mesg.sender == reciver.username%}
+              <p class="recived">{{mesg.mesg}}</p>
+            {%else%}
+              <p class ="sent">{{mesg.mesg}}</p>
+            {%endif%}
+          {%endfor%}
+          <br><br><br>
+        </div>
+        <div class="mesgbox">
+          <form method="post" action ="{%url 'savemesg' reciver_id=reciver.id%}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" name="send" style="display: inline">send</button>
+          </form>
+        </div>
+      </div>
+  </body>
+</html>
